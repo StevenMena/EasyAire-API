@@ -1,0 +1,90 @@
+@extends('main')
+@section('css')
+<style type="text/css">
+
+body {
+        
+      }
+      .dlgwait {
+          display:    inline;
+          position:   fixed;
+          z-index:    1000;
+          top:        0;
+          left:       0;
+          height:     100%;
+          width:      100%;
+          background: rgba( 255, 255, 255, .3 ) 
+                      url("{{ asset('/img/ajax-loader.gif') }}") 
+                      50% 50% 
+                      no-repeat;
+      }
+      .modal {
+          width:      100%;
+          background: rgba( 255, 255, 255, .8 );
+      }
+
+      /* When the body has the loading class, we turn
+         the scrollbar off with overflow:hidden */
+      body.loading {
+          overflow: hidden;
+      }
+
+      /* Anytime the body has the loading class, our
+         modal element will be visible */
+      body.loading .dlgwait {
+          display: block;
+      }
+</style>		
+@endsection
+@section('contenido')
+{{-- MENSAJE DE EXITO --}}
+@if(Session::has('msnExito'))
+	<div class="alert alert-success square fade in alert-dismissable">
+		<button class="close" aria-hidden="true" data-dismiss="alert" type="button">x</button>
+		<strong>Enhorabuena!</strong>
+		{{ Session::get('msnExito') }}
+	</div>
+@endif
+{{-- MENSAJE DE ERROR --}}
+@if(Session::has('msnError'))
+	<div class="alert alert-danger square fade in alert-dismissable">
+		<button class="close" aria-hidden="true" data-dismiss="alert" type="button">x</button>
+		<strong>Auchh!</strong>
+		Algo ha salido mal.	{{ Session::get('msnError') }}
+	</div>
+@endif
+	<div class="the-box">
+		 <div class="panel panel-primary">
+          <div class="panel-heading" >
+            <h3 class="panel-title">SERVICIOS PRESTADOS DIARIAMENTE</h3>
+          </div>
+
+          <div class="panel-body">
+             <div class="table-responsive">   
+                <table style="font-size: 12px;" id="dt-tramitespub" class="table table-hover table-striped">
+                  <thead>
+                    <tr>
+                      <th></th>
+                      <th>ID SOLICITUD</th>
+                      <th>#SOLICITUD</th>
+                      <th width="20%">#REGISTRO</th>
+                      <th width="90%">NOMBRE COMERCIAL</th>
+                      <th>TIPO DE TRAMITE</th>
+                      <th>ESTADO SOLICITUD</th>
+                      <th>Dictamenes</th>
+                      <th>-</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    
+                  </tbody>
+                </table>
+              </div>
+            </div>
+      
+      </div>
+  </div>
+
+@endsection
+@section('js')
+@endsection
